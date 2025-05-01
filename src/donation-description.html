@@ -6,16 +6,14 @@
     <link href="./output.css" rel="stylesheet" />
     <title>Title to be given from database</title>
   </head>
-  <body>
-    <div>
+
+  <body class="bg-gray-900 text-amber-100">
+    <div class="flex justify-normal gap-[5%]">
       <!--Left panel -->
-      <div class="ml-[7%]">
+      <div class="ml-[7%] max-w-[50%]">
         <div class="flex flex-col justify-center">
           <div class="flex align-middle text-4xl font-bold">
             Winter Clothes Distribution in North Bengal
-          </div>
-          <div class="flex align-middle text-3xl font-normal">
-            People around the world world might just need the push you have
           </div>
         </div>
         <div
@@ -23,9 +21,108 @@
         >
           <img src="/assets/images/donation1.png" class="rounded-2xl" />
         </div>
+        <div class="flex justify-items-start gap-2 p-2 mt-[1%]">
+          <div>
+            <img
+              src="/assets/images/userdesc.png"
+              class="max-h-[25px] max-w-[25px]"
+            />
+          </div>
+          <div class="font-light">
+            UIU-Social Services is organizing this fundraiser
+          </div>
+        </div>
+
+        <div class="mt-[1%]">
+          <button
+            class="bg-[#34c759] p-2 pr-3 pl-3 rounded-full flex justify-items-start align-middle gap-1"
+          >
+            <img
+              src="/assets/images/tick.png"
+              class="max-h-[18px] max-w-[15px] mt-0.5"
+            />
+            Donation Protected
+          </button>
+        </div>
+
+        <div class="text-justify mt-[4%]">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique,
+          magnam? Adipisci consectetur vel minus dicta autem enim cupiditate
+          dolorum quidem quasi nesciunt accusamus, eveniet recusandae nobis in
+          quod aspernatur, aut expedita cumque quam doloremque rerum! Maiores
+          fugit facere officiis totam laboriosam voluptate vero illo fuga.
+          Asperiores doloribus, voluptatem amet sapiente ratione praesentium id
+          dolorum fuga quas, beatae ullam deleniti. Impedit, minima quis. Soluta
+          quisquam illum maxime dignissimos harum cumque voluptatibus.
+        </div>
       </div>
       <!--Right Panel -->
-      <div></div>
+      <div class="flex justify-center gap-25">
+        <div class="flex flex-col justify-normal gap-y-5 mt-[25%]">
+          <div class="flex justify-center text-justify text-3xl text-amber-200">
+            TK. 25000 Raised
+          </div>
+          <div class="flex justify-between gap-6">
+            <div>Tk.50000 Goal</div>
+            <div>360 Donations</div>
+          </div>
+          <div>
+            <div class="flex flex-col gap-4">
+              <button class="bg-black pt-2 pb-2 rounded-full text-xl">
+                Share
+              </button>
+              <button class="bg-black pt-2 pb-2 rounded-full text-xl">
+                Donate
+              </button>
+            </div>
+          </div>
+        </div>
+
+          <!-- Circular Progress -->
+          <div class="mt-[25%]">
+            <div class="relative size-40">
+              <svg
+                class="size-full -rotate-90"
+                viewBox="0 0 36 36"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- Background Circle -->
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  class="stroke-current text-gray-200 dark:text-neutral-700"
+                  stroke-width="2"
+                ></circle>
+                <!-- Progress Circle -->
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  class="stroke-current text-blue-600 dark:text-blue-500"
+                  stroke-width="2"
+                  stroke-dasharray="100"
+                  stroke-dashoffset="65"
+                  stroke-linecap="round"
+                ></circle>
+              </svg>
+
+              <!-- Percentage Text -->
+              <div
+                class="absolute top-1/2 start-1/2 transform -translate-y-1/2 -translate-x-1/2"
+              >
+                <span
+                  class="text-center text-2xl font-bold text-blue-600 dark:text-blue-500"
+                  >35%</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- End Circular Progress -->
+        </div>
+      </div>
     </div>
   </body>
 </html>
