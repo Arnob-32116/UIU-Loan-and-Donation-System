@@ -1,0 +1,78 @@
+CREATE DATABASE LoanAndDonation; 
+
+CREATE TABLE UserInfo (
+    user_id INT NOT NULL AUTO_INCREMENT ,
+    uiu_id BIGINT NOT NULL,
+    name varchar(255) NOT NULL,
+    phone char(11) NOT NULL,
+    nid varchar(25) ,
+    passport varchar(25),
+    profile_pic varchar(255),
+    nid_pic varchar(255),
+    passport_pic varchar(255),
+    CONSTRAINT user_info_pk PRIMARY KEY (user_id , uiu_id )
+);
+
+
+CREATE TABLE ClubInfo (
+	club_id INT NOT NULL AUTO_INCREMENT,
+    club_name VARCHAR(255) NOT NULL,
+    club_email VARCHAR(255) NOT NULL,
+    club_description VARCHAR(255) NOT NULL,
+    club_pic VARCHAR(255),
+    supervisor_user_id INT NOT NULL,
+    supervisor_uiu_id BIGINT NOT NULL,
+    CONSTRAINT club_info_pk PRIMARY KEY (club_id)
+);
+
+
+CREATE TABLE Loan (
+	loan_id INT NOT NULL AUTO_INCREMENT,
+    loan_taker_user_id INT NOT NULL,
+    loan_taker_uiu_id BIGINT NOT NULL,
+    loan_giver_user_id INT ,
+    loan_giver_uiu_id BIGINT, 
+    amount INT NOT NULL,
+    installment_info_id INT NOT NULL,
+    description_title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    loan_photo VARCHAR(255) NOT NULL,
+    
+    CONSTRAINT loan_pk PRIMARY KEY (loan_id)
+);
+
+
+CREATE TABLE InstallmentInfo (
+ 	installment_info_id INT NOT NULL AUTO_INCREMENT,
+    start_date DATE NOT NULL ,
+    duration INT NOT NULL,
+    interest_rate INT NOT NULL,
+    amount INT NOT NULL,
+    
+    CONSTRAINT installment_info_id_pk PRIMARY KEY (installment_info_id)
+); 
+
+
+
+CREATE TABLE Donation(
+    donation_id INT NOT NULL AUTO_INCREMENT,
+    donation_taker_club_id INT NOT NULL,
+    total_amount INT NOT NULL,
+    description_title VARCHAR(255) NOT NULL,
+    description VARCHAR(1023) NOT NULL,
+    photo VARCHAR(255) NOT NULL,
+    
+    CONSTRAINT donation_id_pk PRIMARY KEY (donation_id)
+ );
+    
+    
+
+CREATE TABLE DonationUserInfo (
+    don_user_info_id INT NOT NULL AUTO_INCREMENT,
+    donation_giver_user_id INT NOT NULL,
+    donation_giver_uiu_id BIGINT NOT NULL,
+    donation_amount INT NOT NULL,
+    anonymity BOOLEAN DEFAULT FALSE,
+ 	
+    CONSTRAINT donation_user_info_pk PRIMARY KEY (don_user_info_id) 
+);
