@@ -99,10 +99,11 @@
           <span class="text-xl font-bold">UIU Help Box</span>
         </div>
         <nav class="space-x-6 hidden md:flex items-center">
-          <a href="#" class="hover:text-orange-400">Home</a>
-          <a href="#" class="hover:text-orange-400">Our Services</a>
-          <a href="#" class="hover:text-orange-400">About us</a>
-          <a href="#" class="hover:text-orange-400">Contact us</a>
+          <a href="index.html" class="hover:text-orange-400">Home</a>
+          <a href="#" onclick="ScrollToService()" class="hover:text-orange-400">Our Services</a>
+          <a href="#" onclick="ScrollToAbout()" class="hover:text-orange-400">About us</a>
+           <a href="#" onclick="ScrollToContact()"class="hover:text-orange-400">Contact us</a>
+
           <button
             class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
           >
@@ -122,10 +123,12 @@
       </div>
     </div>
 
-    <div class="pt-10 bg-slate-100 pb-12">
+    <div class="pt-10 bg-slate-100 pb-12" id = "services">
       <h2 class="font-bold text-3xl text-center mb-8">Our Services</h2>
-      <div class="flex justify-center gap-x-20">
-        <div class="bg-white p-8 w-80 rounded-lg text-center space-y-2">
+      <div class="flex justify-center gap-x-60">
+        <div
+          class="flex flex-col justify-center items-center g-white p-8 w-[25rem] rounded-lg text-center space-y-2"
+        >
           <img
             src="../assets/images/loan.png"
             class="w-16 h-16 mx-auto mb-4 mt-3"
@@ -133,13 +136,20 @@
           />
           <h3 class="font-bold text-xl">Personal Loans</h3>
           <p class="pb-6">Instant help, anytime you need</p>
-          <a
-            href=""
-            class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
-            >Request Now</a
-          >
+          <div class="flex gap-x-[1rem]">
+            <a
+              href=""
+              class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
+              >Request Loan</a
+            >
+            <a
+              href="loan.html"
+              class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
+              >Give Loan</a
+            >
+          </div>
         </div>
-        <div class="bg-white p-8 w-80 rounded-lg text-center space-y-2">
+        <div class="bg-white p-8 rounded-lg text-center space-y-2">
           <img
             src="../assets/images/crowdfunding.png"
             class="w-16 h-16 mx-auto mb-4 mt-3"
@@ -147,16 +157,22 @@
           />
           <h3 class="font-bold text-xl">Crowd Funding</h3>
           <p class="pb-6">Support, share, succeed.</p>
+          <div class="flex gap-x-[1rem]">
           <a
             href="donation.html"
             class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
             >Donate Now</a
           >
+          <a
+            href="donation.html"
+            class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
+            >Get Donation</a
+          >
         </div>
       </div>
     </div>
 
-    <div class="mt-8">
+    <div class="mt-8" id="about">
       <h2 class="font-bold text-3xl text-center">About us</h2>
       <p class="text-center pt-3 text-lg mx-auto mb-3">
         UIU Loans & Crowdfunding is a dedicated platform designed to support
@@ -207,6 +223,7 @@
 
     <section
       class="bg-[url('../assets/images/5.jpg')] bg-no-repeat bg-cover pb-20"
+      id = "contact"
     >
       <div class="mx-auto lg:w-4/5">
         <div class="text-center space-y-5 lg:w-8/12 mx-auto py-10">
@@ -300,7 +317,7 @@
         </div>
         <div class="space-y-2">
           <p class="text-white text-lg font-[600] pb-3">Useful Links</p>
-          <p class="text-[#FFFFFF99]">Home</p>
+          <a href="#"><p class="text-[#FFFFFF99]">Home</p> </a>
           <p class="text-[#FFFFFF99]">About Us</p>
           <p class="text-[#FFFFFF99]">Contact</p>
           <p class="text-[#FFFFFF99]">Our Services</p>
@@ -324,4 +341,15 @@
 
     <script src="../assets/scripts/script.js"></script>
   </body>
+  <script>
+function ScrollToService() {
+    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
+}
+function ScrollToContact() {
+    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+}
+function ScrollToAbout() {
+    document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
 </html>
