@@ -21,8 +21,13 @@
       </div>
       <nav class="space-x-6 hidden md:flex items-center">
         <a href="index.html" class="hover:text-orange-400">Home</a>
-        <a href="#" class="hover:text-orange-400">Our Services</a>
-        <a href="#" class="hover:text-orange-400">About us</a>
+        <a
+          href="index.html"
+          onclick="ScrollToService()"
+          class="hover:text-orange-400"
+          >Our Services</a
+        >
+        <a href="catagories.html" class="hover:text-orange-400">Categories</a>
         <a href="#" class="hover:text-orange-400">Contact us</a>
         <button
           class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
@@ -255,4 +260,17 @@
     </div>
     <!--footer End here-->
   </body>
+  <script>
+    function ScrollToService() {
+      document
+        .querySelector('#services')
+        .scrollIntoView({ behavior: 'smooth' });
+    }
+    function ScrollToContact() {
+      document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+    }
+    function ScrollToAbout() {
+      document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </html>
