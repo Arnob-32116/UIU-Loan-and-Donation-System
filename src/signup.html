@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Sign Up Loan</title>
+    <link rel="stylesheet" href="../assets/css-style/signup.css" />
+  </head>
+  <body>
+    <div>
+      <div class="Switch">
+        <div class="flex mb-4 bg-white rounded-2xl" role="group">
+          <button
+            type="button"
+            id="user-button"
+            class="px-4 py-2 text-sm font-medium bg-gray-900 text-amber-50"
+            onclick="setupTabSwitch('user-button' , 'club-button', 'user-form' , 'club-form' )"
+          >
+            User Login
+          </button>
+
+          <button
+            type="button"
+            id="club-button"
+            class="px-4 py-2 text-sm font-medium"
+            onclick="setupTabSwitch('club-button' , 'user-button' , 'club-form' , 'user-form')"
+          >
+            Club Login
+          </button>
+        </div>
+      </div>
+
+      <section id="user-form">
+        <div class="signup-box">
+          <form action="">
+            <h2>Signup</h2>
+
+            <div class="input-box">
+              <span class="icon"></span>
+              <input type="student_id" required />
+              <label>Student ID</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"></span>
+              <input type="name" required />
+              <label>Name</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
+              <input type="email" required />
+              <label>Email</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"
+                ><ion-icon name="document-lock"></ion-icon
+              ></span>
+              <input type="password" required />
+              <label>Password</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"></span>
+              <input type="confirm_password" required />
+              <label>Confirm Password</label>
+            </div>
+
+            <div>
+              <button>Signup</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="club-form" class="hidden">
+        <div class="signup-box">
+          <form action="">
+            <h2>Signup</h2>
+
+            <div class="input-box">
+              <span class="icon"></span>
+              <input type="student_id" required />
+              <label>Supervisor ID</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"></span>
+              <input type="name" required />
+              <label>Club Name</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
+              <input type="email" required />
+              <label>Club Email</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"
+                ><ion-icon name="document-lock"></ion-icon
+              ></span>
+              <input type="password" required />
+              <label>Password</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"></span>
+              <input type="confirm_password" required />
+              <label>Confirm Password</label>
+            </div>
+
+            <div>
+              <button>Signup</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+
+  <script>
+    function setupTabSwitch(
+      button_to_be_off,
+      button_to_be_on,
+      section1,
+      section2
+    ) {
+      btn1 = document.getElementById(button_to_be_on);
+      btn2 = document.getElementById(button_to_be_off);
+      btn1.classList.remove('bg-gray-900', 'text-amber-50');
+      btn2.classList.add('bg-gray-900', 'text-amber-50');
+      document.getElementById(section2).classList.add('hidden');
+      document.getElementById(section1).classList.remove('hidden');
+    }
+  </script>
+</html>

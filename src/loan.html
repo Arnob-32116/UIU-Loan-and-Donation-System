@@ -8,10 +8,38 @@
   </head>
   <body class="bg-gray-900 text-amber-100">
     <!--Navbar Start-->
+    <div
+      class="mx-auto px-20 py-6 flex justify-between items-center text-white"
+    >
+      <div class="flex items-center space-x-3">
+        <img
+          src="../assets/images/United_International_University_Monogram.svg.png"
+          alt="Logo"
+          class="h-8"
+        />
+        <span class="text-xl font-bold">UIU Help Box</span>
+      </div>
+      <nav class="space-x-6 hidden md:flex items-center">
+        <a href="index.html" class="hover:text-orange-400">Home</a>
+        <a
+          href="index.html"
+          onclick="ScrollToService()"
+          class="hover:text-orange-400"
+          >Our Services</a
+        >
+        <a href="catagories.html" class="hover:text-orange-400">Categories</a>
+        <a href="#" class="hover:text-orange-400">Contact us</a>
+        <button
+          class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
+        >
+          Get Started
+        </button>
+      </nav>
+    </div>
 
     <!--Navbar End-->
 
-    <div class="flex flex-col justify-items-start mt-[10%] w-[100%]">
+    <div class="flex flex-col justify-items-start mt-[3rem] w-[100%]">
       <div class="flex flex-col justify-center ml-[7%]">
         <div class="flex align-middle text-4xl font-bold">
           Give Loans that Benifit Everybody
@@ -232,4 +260,17 @@
     </div>
     <!--footer End here-->
   </body>
+  <script>
+    function ScrollToService() {
+      document
+        .querySelector('#services')
+        .scrollIntoView({ behavior: 'smooth' });
+    }
+    function ScrollToContact() {
+      document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+    }
+    function ScrollToAbout() {
+      document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </html>
