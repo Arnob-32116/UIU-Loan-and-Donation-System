@@ -10,7 +10,7 @@
   <body>
     <section>
       <div class="login-box">
-        <form action="../assets/scripts/login.php" method="post">
+        <form action="../assets/scripts/login_db.php" method="post">
           <h2>Login</h2>
           <div class="input-box">
             <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
@@ -20,12 +20,12 @@
 
           <div class="input-box">
             <span class="icon"><ion-icon name="document-lock"></ion-icon></span>
-            <input type="Password" name="passwords" required />
+            <input type="Password" name="password" required />
             <label>Password</label>
           </div>
 
           <div class="remember-forgot">
-            <label> <input type="checkbox" /> Remember me </label>
+            <label> <input type="checkbox" name = "checkbox" /> Login as CLub </label>
             <a href="#">Forgot Password?</a>
           </div>
 
@@ -35,7 +35,7 @@
 
           <div class="register-link">
             <p>
-              Donn't have an account? <a href="../src/signup.html">Register</a>
+              Don't have an account? <a href="../src/signup.html">Register</a>
             </p>
           </div>
         </form>

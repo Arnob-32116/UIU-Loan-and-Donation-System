@@ -1,78 +1,213 @@
-CREATE DATABASE LoanAndDonation; 
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Jun 27, 2025 at 07:56 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
-CREATE TABLE UserInfo (
-    user_id INT NOT NULL AUTO_INCREMENT ,
-    uiu_id BIGINT NOT NULL,
-    name varchar(255) NOT NULL,
-    phone char(11) NOT NULL,
-    nid varchar(25) ,
-    passport varchar(25),
-    profile_pic varchar(255),
-    nid_pic varchar(255),
-    passport_pic varchar(255),
-    CONSTRAINT user_info_pk PRIMARY KEY (user_id , uiu_id )
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-CREATE TABLE ClubInfo (
-	club_id INT NOT NULL AUTO_INCREMENT,
-    club_name VARCHAR(255) NOT NULL,
-    club_email VARCHAR(255) NOT NULL,
-    club_description VARCHAR(255) NOT NULL,
-    club_pic VARCHAR(255),
-    supervisor_user_id INT NOT NULL,
-    supervisor_uiu_id BIGINT NOT NULL,
-    CONSTRAINT club_info_pk PRIMARY KEY (club_id)
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `LoanAndDonation`
+--
 
-CREATE TABLE Loan (
-	loan_id INT NOT NULL AUTO_INCREMENT,
-    loan_taker_user_id INT NOT NULL,
-    loan_taker_uiu_id BIGINT NOT NULL,
-    loan_giver_user_id INT ,
-    loan_giver_uiu_id BIGINT, 
-    amount INT NOT NULL,
-    installment_info_id INT NOT NULL,
-    description_title VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    loan_photo VARCHAR(255) NOT NULL,
-    
-    CONSTRAINT loan_pk PRIMARY KEY (loan_id)
-);
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `ClubInfo`
+--
 
-CREATE TABLE InstallmentInfo (
- 	installment_info_id INT NOT NULL AUTO_INCREMENT,
-    start_date DATE NOT NULL ,
-    duration INT NOT NULL,
-    interest_rate INT NOT NULL,
-    amount INT NOT NULL,
-    
-    CONSTRAINT installment_info_id_pk PRIMARY KEY (installment_info_id)
-); 
+CREATE TABLE `ClubInfo` (
+  `club_id` int(11) NOT NULL,
+  `club_name` varchar(255) NOT NULL,
+  `club_email` varchar(255) NOT NULL,
+  `club_description` varchar(255) DEFAULT NULL,
+  `club_pic` varchar(255) DEFAULT NULL,
+  `supervisor_user_id` int(11) DEFAULT NULL,
+  `supervisor_uiu_id` bigint(20) DEFAULT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `Donation`
+--
 
-CREATE TABLE Donation(
-    donation_id INT NOT NULL AUTO_INCREMENT,
-    donation_taker_club_id INT NOT NULL,
-    total_amount INT NOT NULL,
-    description_title VARCHAR(255) NOT NULL,
-    description VARCHAR(1023) NOT NULL,
-    photo VARCHAR(255) NOT NULL,
-    
-    CONSTRAINT donation_id_pk PRIMARY KEY (donation_id)
- );
-    
-    
+CREATE TABLE `Donation` (
+  `donation_id` int(11) NOT NULL,
+  `donation_taker_club_id` int(11) NOT NULL,
+  `total_amount` int(11) NOT NULL,
+  `description_title` varchar(255) NOT NULL,
+  `description` varchar(1023) NOT NULL,
+  `photo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE DonationUserInfo (
-    don_user_info_id INT NOT NULL AUTO_INCREMENT,
-    donation_giver_user_id INT NOT NULL,
-    donation_giver_uiu_id BIGINT NOT NULL,
-    donation_amount INT NOT NULL,
-    anonymity BOOLEAN DEFAULT FALSE,
- 	
-    CONSTRAINT donation_user_info_pk PRIMARY KEY (don_user_info_id) 
-);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `DonationUserInfo`
+--
+
+CREATE TABLE `DonationUserInfo` (
+  `don_user_info_id` int(11) NOT NULL,
+  `donation_giver_user_id` int(11) NOT NULL,
+  `donation_giver_uiu_id` bigint(20) NOT NULL,
+  `donation_amount` int(11) NOT NULL,
+  `anonymity` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `InstallmentInfo`
+--
+
+CREATE TABLE `InstallmentInfo` (
+  `installment_info_id` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `duration` int(11) NOT NULL,
+  `interest_rate` int(11) NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Loan`
+--
+
+CREATE TABLE `Loan` (
+  `loan_id` int(11) NOT NULL,
+  `loan_taker_user_id` int(11) NOT NULL,
+  `loan_taker_uiu_id` bigint(20) NOT NULL,
+  `loan_giver_user_id` int(11) DEFAULT NULL,
+  `loan_giver_uiu_id` bigint(20) DEFAULT NULL,
+  `amount` int(11) NOT NULL,
+  `installment_info_id` int(11) NOT NULL,
+  `description_title` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `loan_photo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `UserInfo`
+--
+
+CREATE TABLE `UserInfo` (
+  `user_id` int(11) NOT NULL,
+  `uiu_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` char(11) DEFAULT NULL,
+  `nid` varchar(25) DEFAULT NULL,
+  `passport` varchar(25) DEFAULT NULL,
+  `profile_pic` varchar(255) DEFAULT NULL,
+  `nid_pic` varchar(255) DEFAULT NULL,
+  `passport_pic` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `UserInfo`
+--
+
+INSERT INTO `UserInfo` (`user_id`, `uiu_id`, `name`, `phone`, `nid`, `passport`, `profile_pic`, `nid_pic`, `passport_pic`, `password`, `email`) VALUES
+(2, '0112310120', 'Arnob', NULL, NULL, NULL, NULL, NULL, NULL, '1234', 'arnob32116@gmail.com');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ClubInfo`
+--
+ALTER TABLE `ClubInfo`
+  ADD PRIMARY KEY (`club_id`);
+
+--
+-- Indexes for table `Donation`
+--
+ALTER TABLE `Donation`
+  ADD PRIMARY KEY (`donation_id`);
+
+--
+-- Indexes for table `DonationUserInfo`
+--
+ALTER TABLE `DonationUserInfo`
+  ADD PRIMARY KEY (`don_user_info_id`);
+
+--
+-- Indexes for table `InstallmentInfo`
+--
+ALTER TABLE `InstallmentInfo`
+  ADD PRIMARY KEY (`installment_info_id`);
+
+--
+-- Indexes for table `Loan`
+--
+ALTER TABLE `Loan`
+  ADD PRIMARY KEY (`loan_id`);
+
+--
+-- Indexes for table `UserInfo`
+--
+ALTER TABLE `UserInfo`
+  ADD PRIMARY KEY (`user_id`,`uiu_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ClubInfo`
+--
+ALTER TABLE `ClubInfo`
+  MODIFY `club_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `Donation`
+--
+ALTER TABLE `Donation`
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `DonationUserInfo`
+--
+ALTER TABLE `DonationUserInfo`
+  MODIFY `don_user_info_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `InstallmentInfo`
+--
+ALTER TABLE `InstallmentInfo`
+  MODIFY `installment_info_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Loan`
+--
+ALTER TABLE `Loan`
+  MODIFY `loan_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `UserInfo`
+--
+ALTER TABLE `UserInfo`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
