@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -104,12 +108,20 @@
           <a href="#" onclick="ScrollToAbout()" class="hover:text-orange-400">About us</a>
            <a href="#" onclick="ScrollToContact()"class="hover:text-orange-400">Contact us</a>
 
-          <a href="login.html">
+
+          <a href="<?php echo isset($_SESSION['type']) ? 'takeloan.php' : 'login.php'; ?>">
            <button
             class="bg-orange-400 hover:bg-orange-700 text-white px-4 py-2 rounded-lg"
           >
-
-            Get Started
+          <?php
+              if(isset($_SESSION['type']) && $_SESSION['type'] === "001"){
+                echo $_SESSION['name'];
+              }else if(isset($_SESSION['type']) && $_SESSION['type'] === "100"){
+                echo $_SESSION['club_name'];
+              }else{
+                echo "Get Started";
+              }
+          ?>
           </button>
         </a>
         </nav>

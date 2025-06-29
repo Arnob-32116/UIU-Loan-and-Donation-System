@@ -25,7 +25,7 @@
           </div>
 
           <div class="remember-forgot">
-            <label> <input type="checkbox" name = "checkbox" /> Login as CLub </label>
+            <label> <input type="checkbox" name = "checkbox" /> Login as Club </label>
             <a href="#">Forgot Password?</a>
           </div>
 

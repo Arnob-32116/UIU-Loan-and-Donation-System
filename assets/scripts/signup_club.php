@@ -8,7 +8,6 @@
   $sql = "INSERT INTO ClubInfo ( supervisor_uiu_id , club_name, club_email, password)
         VALUES ('$supervisor_id', '$club_name', '$club_email', '$password')";
 
-        echo $sql;
 
 if ($conn->query($sql) === TRUE) {
     header("Location: ../../src/index.html");

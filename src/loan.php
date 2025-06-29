@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,8 +52,9 @@
     </div>
 
     <!--SearchBar Start-->
+
     <div class="p-6 flex justify-start ml-[5%]">
-      <form class="w-2xl">
+      <form class="w-2xl" action="" method="get">
         <label
           for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -78,9 +83,10 @@
           <input
             type="search"
             id="default-search"
+            name="search"
             class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search Mockups, Logos..."
-            required
+
           />
           <button
             type="submit"
@@ -90,144 +96,71 @@
           </button>
         </div>
       </form>
+
     </div>
     <!--SearchBar End-->
     <div class="grid grid-cols-3 row-auto gap-y-7 ml-[7%] mt-[2%]">
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
+<!--Here lied the card-->
+    <?php
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
+require '../assets/scripts/dbconnection.php';
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
+$search_text = isset($_GET['search']) ? trim($_GET['search']) : '';
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$limit = 9;
+$offset = ($page - 1) * $limit;
+if ($search_text === '') {
+    $sql = "SELECT * FROM Loan ORDER BY loan_id DESC LIMIT $limit OFFSET $offset";
+} else {
+    $sql = "SELECT * FROM Loan WHERE description_title LIKE '%$search_text%' ORDER BY loan_id DESC LIMIT $limit OFFSET $offset";
+}
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
+$result = $conn->query($sql);
 
+if ($result && $result->num_rows > 0):
+    while ($row = $result->fetch_assoc()):
+?>
+    <!-- Card Start -->
+    <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
+        <div>
+            <img
+                src="<?= $row['loan_photo'] ?>"
+                class="h-max[60] w-max[60] rounded-2xl"
+                alt="Loan Photo"
+            />
+        </div>
+        <a href="loan-description.php?id=<?php echo $row['loan_id'] ?>">
         <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
+            <?= $row['description_title'] ?>
         </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
+    </a>
+    </div>
+    <!-- Card End -->
+<?php
+    endwhile;
+else:
+    echo "<p>No results found.</p>";
+endif;
+?>
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
-      <!--card start-->
-      <div class="h-max[100] w-75 flex flex-col gap-3 items-center">
-        <div class="">
-          <img
-            src="/assets/images/donation1.png"
-            class="h-max[60] w-max[60] rounded-2xl"
-          />
-        </div>
 
-        <div class="flex align-middle text font-light">
-          Winter Clothes Distribution
-        </div>
-      </div>
-      <!--Card End-->
     </div>
 
     <div class="flex justify-center p-10">
+      <form action="" method="get">
+         <input type="hidden" name="page" value="<?= $page + 1 ?>">
+
       <button
-        type="button"
+        type="submit"
+        name = "see_more_button"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
       >
         See More
       </button>
+      </form>
     </div>
 
     <!--Footer Code-->

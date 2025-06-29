@@ -1,3 +1,8 @@
+<?php
+  session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,29 +38,45 @@
     </div>
 
     <!--Navbar End-->
+<?php
+  require '../assets/scripts/dbconnection.php';
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM donation WHERE donation_id = $id";
+  $result = $conn->query($sql);
+  $donation_info = $result->fetch_assoc();
+?>
 
     <div class="flex justify-normal gap-[5%]">
       <!--Left panel -->
       <div class="ml-[7%] max-w-[50%]">
         <div class="flex flex-col justify-center">
           <div class="flex align-middle text-4xl font-bold">
-            Winter Clothes Distribution in North Bengal
+            <?php echo $donation_info['description_title'] ?>
           </div>
         </div>
         <div
           class="max-h-[540px] max-w-[540px] mt-[2%] flex justify-items-start"
         >
-          <img src="/assets/images/donation1.png" class="rounded-2xl" />
+         <img
+              src="<?php echo $donation_info['photo']?>"
+              class="max-h-[25px] max-w-[25px]"
+            />
         </div>
         <div class="flex justify-items-start gap-2 p-2 mt-[1%]">
           <div>
             <img
-              src="/assets/images/userdesc.png"
+              src="../assets/images/userdesc.png"
               class="max-h-[25px] max-w-[25px]"
             />
           </div>
           <div class="font-light">
-            UIU-Social Services is organizing this fundraiser
+            <?php
+           $user_id = $donation_info['donation_taker_club_id'];
+                 $sql = " SELECT  * FROM ClubInfo WHERE club_id = $user_id";
+                 $result = $conn->query($sql);
+                 $user_info = $result->fetch_assoc();
+                 echo $user_info['club_name'];
+                 ?>
           </div>
         </div>
 
@@ -64,7 +85,7 @@
             class="bg-[#34c759] p-2 pr-3 pl-3 rounded-full flex justify-items-start align-middle gap-1"
           >
             <img
-              src="/assets/images/tick.png"
+              src="../assets/images/tick.png"
               class="max-h-[18px] max-w-[15px] mt-0.5"
             />
             Donation Protected
@@ -72,14 +93,7 @@
         </div>
 
         <div class="text-justify mt-[4%]">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique,
-          magnam? Adipisci consectetur vel minus dicta autem enim cupiditate
-          dolorum quidem quasi nesciunt accusamus, eveniet recusandae nobis in
-          quod aspernatur, aut expedita cumque quam doloremque rerum! Maiores
-          fugit facere officiis totam laboriosam voluptate vero illo fuga.
-          Asperiores doloribus, voluptatem amet sapiente ratione praesentium id
-          dolorum fuga quas, beatae ullam deleniti. Impedit, minima quis. Soluta
-          quisquam illum maxime dignissimos harum cumque voluptatibus.
+          <?php echo  $donation_info['description'] ?>
         </div>
       </div>
       <!--Right Panel -->
@@ -92,7 +106,7 @@
               TK. 25000 Raised
             </div>
             <div class="flex justify-between gap-6">
-              <div>Tk.50000 Goal</div>
+              <div>Tk.<?php $donation_info['total_amount'] ?>Goal</div>
               <div>360 Donations</div>
             </div>
             <div>

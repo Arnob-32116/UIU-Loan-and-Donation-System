@@ -17,7 +17,8 @@ if ($result && $result->num_rows === 1) {
         $_SESSION['club_id'] = $user['club_id'];
         $_SESSION['club_name'] = $user['club_name'];
         $_SESSION['club_email'] = $user['club_email'];
-        header("Location: ../../src/index.html");
+        $_SESSION['type'] = "100";
+        header("Location: ../../src/index.php");
         exit();
     } else {
         echo "Incorrect password.";
@@ -41,7 +42,8 @@ if ($result && $result->num_rows === 1) {
         $_SESSION['uiu_id'] = $user['uiu_id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];
-        header("Location: ../../src/index.html");
+        $_SESSION['type'] = "001";
+        header("Location: ../../src/index.php");
         exit();
     } else {
         echo "Incorrect password.";

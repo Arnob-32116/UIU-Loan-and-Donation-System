@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +47,7 @@
           </div>
         </div>
       </div>
-
+      <form  enctype="multipart/form-data"  action="../assets/scripts/upload_image.php" method="post">
       <div id="form-space" class="ml-[5rem] mr-[5rem] w-[70%]">
         <div id="title-space flex flex-col">
           <div class="mb-1">
@@ -56,6 +60,7 @@
               <input
                 type="text"
                 id="title-input"
+                name="title"
                 placeholder="Enter your title here"
                 oninput="characterRemaining('title-input' , 'title-char-rem')"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -75,14 +80,22 @@
             >Your Description</label
           >
           <textarea
-            id="message"
+            id="description"
             rows="4"
+            name = "description"
             class="block p-2.5 w-full text-xl text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Write your description here..."
           ></textarea>
         </div>
+         <label for="number-input" class="block mb-2 text-2xl font-large text-gray-900 dark:text-white">Donation Amount :</label>
+    <input type="number" id="amount" name = "amount" aria-describedby="helper-text-explanation" class="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Amount in taka" required />
+
+
+
         <div id="button-space" class="flex justify-start gap-155">
           <div class="flex flex-col gap-y-1.5 mt-[1rem]">
+
+
             <div id="add-image-button">
               <button
                 type="button"
@@ -90,7 +103,8 @@
               >
                 <div class="flex justify-center items-center gap-1">
                   <img src="../assets/images/image_icon.png" class="h-8 w-8" />
-                  <div class="">Add Images</div>
+                  <input type="file"  name = "file" accept="image/*" style = " opacity:0; position:absolute ">
+                  <div>Add Images</div>
                 </div>
               </button>
             </div>
@@ -98,6 +112,7 @@
               <button
                 type="button"
                 class="w-[14rem] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xl px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                onclick="popup()"
               >
                 <div class="flex justify-center items-center gap-1">
                   <img
@@ -106,26 +121,19 @@
                   />
                   <div class="">Add Catergory</div>
                 </div>
-              </button>
-            </div>
-            <div id="add-clause-button">
-              <button
-                type="button"
-                class="text-white w-[14rem] bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xl px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-              >
-                <div class="flex justify-center items-center gap-1">
-                  <img
-                    src="../assets/images/term_icon.png"
-                    class="h-8 w-8"
-                  />
-                  <div class="">Add Terms</div>
 
               </button>
             </div>
+
+            <div id="selected-tag" name="selected-tag" class="mt-2 text-xl text-amber-400 font-semibold">
+                No tag selected
+            </div>
+
+
           </div>
           <div class="flex flex-col justify-center">
             <button
-              type="button"
+              type="submit"
               class="text-white w-[12rem] bg-green-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-xl px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
             >
                <div class="flex justify-center text-2xl items-center gap-1">
@@ -134,12 +142,13 @@
                     class="h-8 w-8"
                   />
                   <div class="">Submit</div>
-
+               </div>
             </button>
           </div>
         </div>
       </div>
     </div>
+    </form>
 
     <!--Footer Code-->
     <div class="flex justify-around mt-20 mb-10">
@@ -185,5 +194,16 @@
       }
       label.textContent = rem + ' characters remaining';
     }
+
+    function popup(){
+        window.open('catpop.html', 'TagPopup', 'width=240,height=300,left=400,top=800');
+    }
+
+    function receiveTag(tag) {
+
+      document.getElementById('selected-tag').innerText = `Selected Tag: ${tag}`;
+
+    }
+
   </script>
 </html>
