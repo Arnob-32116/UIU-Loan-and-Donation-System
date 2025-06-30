@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 27, 2025 at 07:56 AM
+-- Generation Time: Jun 30, 2025 at 05:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,8 +50,16 @@ CREATE TABLE `Donation` (
   `total_amount` int(11) NOT NULL,
   `description_title` varchar(255) NOT NULL,
   `description` varchar(1023) NOT NULL,
-  `photo` varchar(255) NOT NULL
+  `photo` varchar(255) NOT NULL,
+  `tag` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Donation`
+--
+
+INSERT INTO `Donation` (`donation_id`, `donation_taker_club_id`, `total_amount`, `description_title`, `description`, `photo`, `tag`) VALUES
+(1, 1, 10000, 'Donation For My Medical Expenses', 'Hi. Everyone . I need emergency cash.', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_68618986129f48.76295928.', NULL);
 
 -- --------------------------------------------------------
 
@@ -64,7 +72,7 @@ CREATE TABLE `DonationUserInfo` (
   `donation_giver_user_id` int(11) NOT NULL,
   `donation_giver_uiu_id` bigint(20) NOT NULL,
   `donation_amount` int(11) NOT NULL,
-  `anonymity` tinyint(1) DEFAULT 0
+  `donation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -94,11 +102,31 @@ CREATE TABLE `Loan` (
   `loan_giver_user_id` int(11) DEFAULT NULL,
   `loan_giver_uiu_id` bigint(20) DEFAULT NULL,
   `amount` int(11) NOT NULL,
-  `installment_info_id` int(11) NOT NULL,
+  `installment_info_id` int(11) DEFAULT NULL,
   `description_title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `loan_photo` varchar(255) NOT NULL
+  `loan_photo` varchar(255) NOT NULL,
+  `interest` int(11) DEFAULT NULL,
+  `tag` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Loan`
+--
+
+INSERT INTO `Loan` (`loan_id`, `loan_taker_user_id`, `loan_taker_uiu_id`, `loan_giver_user_id`, `loan_giver_uiu_id`, `amount`, `installment_info_id`, `description_title`, `description`, `loan_photo`, `interest`, `tag`) VALUES
+(2, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(3, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For New Phone', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(4, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(5, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(6, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(7, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(8, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(9, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(10, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(11, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Semester Fee', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(12, 2, 112310120, NULL, NULL, 100000, NULL, 'Loan For Computer', 'Hi there whats up', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_686038038308d1.57458519.', NULL, NULL),
+(13, 2, 112310120, NULL, NULL, 100, NULL, 'First Loan with tag', 'asdfkljlkdsvcjlkjfdslkfjklj', 'https://pzxvpgtlyuofzluxhjlm.supabase.co/storage/v1/object/crowdfunding/Uploaded/img_68623ff2ec90e8.50688162.', 1, '');
 
 -- --------------------------------------------------------
 
@@ -181,7 +209,7 @@ ALTER TABLE `ClubInfo`
 -- AUTO_INCREMENT for table `Donation`
 --
 ALTER TABLE `Donation`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `DonationUserInfo`
@@ -199,7 +227,7 @@ ALTER TABLE `InstallmentInfo`
 -- AUTO_INCREMENT for table `Loan`
 --
 ALTER TABLE `Loan`
-  MODIFY `loan_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `loan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `UserInfo`

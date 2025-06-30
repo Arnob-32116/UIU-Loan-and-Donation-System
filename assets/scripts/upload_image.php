@@ -7,7 +7,8 @@ $description = $_POST['description'];
 $amount = $_POST['amount'];
 $interest = $_POST['interest'];
 $type = $_SESSION['type'];
-
+$tag = $_POST['tag'];
+echo $tag;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
     $bucket = 'crowdfunding'; // Supabase bucket name
     $filename = $_FILES['file']['name'];
@@ -42,11 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
              $user_id = $_SESSION['user_id'];
              $uiu_id = $_SESSION['uiu_id'];
 
-             $sql = "INSERT INTO Loan ( loan_taker_user_id , loan_taker_uiu_id, amount, description_title , description , loan_photo , interest)
+             $sql = "INSERT INTO Loan ( loan_taker_user_id , loan_taker_uiu_id, amount, description_title , description , loan_photo , interest , tag)
 
-             VALUES ('$user_id','$uiu_id', '$amount', '$title', '$description' , '$imageurl' , $interest)";
+             VALUES ('$user_id','$uiu_id', '$amount', '$title', '$description' , '$imageurl' , '$interest' , '$tag')";
 
 
+            echo $sql;
             if ($conn->query($sql) === TRUE) {
             header("Location: ../../src/index.php");
             exit();
@@ -58,9 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
         }else{
              $user_id = $_SESSION['club_id'];
 
-             $sql = "INSERT INTO Donation ( donation_taker_club_id , total_amount, description_title , description , photo )
+             $sql = "INSERT INTO Donation ( donation_taker_club_id , total_amount, description_title , description , photo , tag )
 
-             VALUES ('$user_id', '$amount', '$title', '$description' , '$imageurl')";
+             VALUES ('$user_id', '$amount', '$title', '$description' , '$imageurl' ,'$tag')";
 
             echo $sql;
             if ($conn->query($sql) === TRUE) {

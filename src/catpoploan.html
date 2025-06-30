@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Select Tag</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900 text-white p-4">
+    <div class="flex flex-col space-y-2 w-48">
+      <button
+        onclick="selectTag('Buisness Loan')"
+        class="bg-gray-700 hover:bg-amber-500 px-4 py-2 rounded-md"
+      >
+        Buisness Loan
+      </button>
+      <button
+        onclick="selectTag('Medical Loan')"
+        class="bg-gray-700 hover:bg-amber-500 px-4 py-2 rounded-md"
+      >
+        Medical Loan
+      </button>
+      <button
+        onclick="selectTag('Education Loan')"
+        class="bg-gray-700 hover:bg-amber-500 px-4 py-2 rounded-md"
+      >
+        Education Loan
+      </button>
+      <button
+        onclick="selectTag('Car Loan')"
+        class="bg-gray-700 hover:bg-amber-500 px-4 py-2 rounded-md"
+      >
+        Car Loan
+      </button>
+
+      <button
+        onclick="selectTag('Travel Loan')"
+        class="bg-gray-700 hover:bg-amber-500 px-4 py-2 rounded-md"
+      >
+        Travel Loan
+      </button>
+    </div>
+
+    <script>
+      function selectTag(tag) {
+        if (window.opener && !window.opener.closed) {
+          window.opener.receiveTag(tag); // send tag back
+          window.close();
+        }
+      }
+    </script>
+  </body>
+</html>

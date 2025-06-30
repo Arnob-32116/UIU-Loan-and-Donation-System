@@ -130,6 +130,7 @@ session_start();
             <div id="selected-tag" name="selected-tag" class="mt-4 text-xl text-amber-400 font-semibold">
                 No tag selected
             </div>
+              <input type="hidden" name="tag" id="selectedTagInput" value="">
 
 
           </div>
@@ -198,13 +199,13 @@ session_start();
     }
 
     function popup(){
-        window.open('catpop.html', 'TagPopup', 'width=240,height=300,left=400,top=800');
+        window.open('catpoploan.html', '', 'width=240,height=300,left=400,top=800');
     }
 
     function receiveTag(tag) {
 
       document.getElementById('selected-tag').innerText = `Selected Tag: ${tag}`;
-
+       document.getElementById('selectedTagInput').value = tag;
     }
 
   </script>
