@@ -18,9 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
 
     // Create unique filename: timestamp + random string
     $uniqueName = uniqid('img_', true) . '.' . $ext;
-    $projectUrl = 'https://pzxvpgtlyuofzluxhjlm.supabase.co';
-    $apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6eHZwZ3RseXVvZnpsdXhoamxtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0ODU5MDAwMiwiZXhwIjoyMDY0MTY2MDAyfQ.qnazFugPQjHjxtcH1NREsNwP1Bsy_iQVR07eYgADe3M'; // Replace with your actual Supabase service role key
-
+    $projectUrl = 'hidden';
+    $apiKey = 'hidden'
     $uploadUrl = "$projectUrl/storage/v1/object/$bucket/Uploaded/$uniqueName";
     $imageurl = $uploadUrl;
 
